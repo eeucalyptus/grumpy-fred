@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://fred.gd" type="Script" id=1]
 [ext_resource path="res://assets/animation/debug_walk_01.png" type="Texture" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://assets/animation/debug_walk_03.png" type="Texture" id=4]
 [ext_resource path="res://assets/animation/debug_walk_04.png" type="Texture" id=5]
 [ext_resource path="res://assets/animation/debug_walk_05.png" type="Texture" id=6]
-[ext_resource path="res://fred_animation.gd" type="Script" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -14,26 +13,27 @@ animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "default",
-"speed": 5.0
+"speed": 3.0
 } ]
 
-[node name="Container" type="Container"]
+[node name="Fred" type="Container"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 40.0
-margin/bottom = 40.0
+margin/left = -50.0
+margin/top = -100.0
+margin/right = 50.0
+margin/bottom = 100.0
 script/script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 
-transform/pos = Vector2( 204.296, 150.813 )
+transform/pos = Vector2( 50, 100 )
 frames = SubResource( 1 )
-animation = "New Anim"
-script/script = ExtResource( 7 )
+animation = "default"
+frame = 2
+playing = true
 
 
