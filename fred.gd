@@ -26,6 +26,7 @@ func _process(delta):
 	else:
 		if(Input.is_action_pressed("INTERACT") and is_at_goat):
 			get_node("AnimatedSprite").set_animation("knife_up")
+			get_parent().get_node("Goat/Sprite").set_animation("with_blood")
 		else:
 			if(is_at_ladder):
 				get_node("AnimatedSprite").set_animation("climb_stay")
@@ -36,22 +37,22 @@ func _process(delta):
 func walkLeft(delta):
 	if(not is_at_ladder or is_at_ladder_bottom):
 		get_node("AnimatedSprite").set_animation("walk_left")
-		move(Vector2(-30*delta, 0))
+		move(Vector2(-60*delta, 0))
 	
 func walkRight(delta):
 	if(not is_at_ladder or is_at_ladder_bottom):
 		get_node("AnimatedSprite").set_animation("walk_right")
-		move(Vector2(30*delta, 0))
+		move(Vector2(60*delta, 0))
 	
 func climbUp(delta):
 	if(is_at_ladder):
 		get_node("AnimatedSprite").set_animation("climb_up")
-		move(Vector2(0,-100*delta))
+		move(Vector2(0,-40*delta))
 	
 func climbDown(delta):
 	if(is_at_ladder):
 		get_node("AnimatedSprite").set_animation("climb_down")
-		move(Vector2(0,100*delta))
+		move(Vector2(0,40*delta))
 	
 func pullDown(delta):
 	move(Vector2(0, 100*delta))
