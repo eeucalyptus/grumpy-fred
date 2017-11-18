@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=1]
+[gd_scene load_steps=21 format=1]
 
 [ext_resource path="res://fred.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/fred_idle_1.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/sprites/new_left_debug_walk_03.png" type="Texture" id=14]
 [ext_resource path="res://assets/sprites/new_left_debug_walk_04.png" type="Texture" id=15]
 [ext_resource path="res://assets/sprites/new_left_debug_walk_05.png" type="Texture" id=16]
+[ext_resource path="res://assets/sprites/fred_with_knife.png" type="Texture" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -49,6 +50,16 @@ animations = [ {
 "loop": true,
 "name": "climb_down",
 "speed": 3.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "climb_stay",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "knife_up",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=3]
@@ -80,6 +91,7 @@ _update_shape_index = 0
 transform/pos = Vector2( 0.487686, -0.512321 )
 frames = SubResource( 2 )
 animation = "default"
+frame = 1
 playing = true
 
 [node name="Area2D" type="Area2D" parent="."]
