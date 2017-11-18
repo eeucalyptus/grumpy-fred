@@ -1,14 +1,26 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=20 format=1]
 
 [ext_resource path="res://fred.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/fred_idle_1.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/fred_idle_2.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/fred_idle_3.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/ladder_animation.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/ladder_animation_2.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/new_right_debug_walk_01.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/new_right_debug_walk_02.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/new_right_debug_walk_03.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/new_right_debug_walk_04.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/new_right_debug_walk_05.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/new_left_debug_walk_01.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/new_left_debug_walk_02.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/new_left_debug_walk_03.png" type="Texture" id=14]
+[ext_resource path="res://assets/sprites/new_left_debug_walk_04.png" type="Texture" id=15]
+[ext_resource path="res://assets/sprites/new_left_debug_walk_05.png" type="Texture" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 100, 738.273 )
+extents = Vector2( 100, 200 )
 
 [sub_resource type="SpriteFrames" id=2]
 
@@ -17,13 +29,38 @@ animations = [ {
 "loop": true,
 "name": "default",
 "speed": 3.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "climb_up",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "walk_right",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "walk_left",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "climb_down",
+"speed": 3.0
 } ]
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
 
 [node name="Fred" type="KinematicBody2D"]
 
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 0.329053, 0, 0, 0.135221, 2.33184, 0.579563 )
+shapes/0/transform = Matrix32( 0.31785, 0, 0, 0.506963, 4.66743, -0.574385 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -32,17 +69,42 @@ script/script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-transform/pos = Vector2( 2.33184, 0.579563 )
-transform/scale = Vector2( 0.329053, 0.135221 )
+transform/pos = Vector2( 4.66743, -0.574385 )
+transform/scale = Vector2( 0.31785, 0.506963 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 
+transform/pos = Vector2( 0.487686, -0.512321 )
 frames = SubResource( 2 )
 animation = "default"
-frame = 2
 playing = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+transform/pos = Vector2( 1.02139, -32.3918 )
+transform/scale = Vector2( 0.968081, 2.01224 )
+input/pickable = true
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1.13625, 0, 0, 5.03367, 1.2352, 15.6718 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="shape" type="CollisionShape2D" parent="Area2D"]
+
+transform/pos = Vector2( 1.2352, 15.6718 )
+transform/scale = Vector2( 1.13625, 5.03367 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[connection signal="area_enter" from="Area2D" to="." method="_on_Area2D_area_enter"]
+
+[connection signal="area_exit" from="Area2D" to="." method="_on_Area2D_area_exit"]
 
 
