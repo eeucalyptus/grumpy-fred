@@ -1,37 +1,46 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://fred.gd" type="Script" id=1]
-[ext_resource path="res://assets/animation/debug_walk_01.png" type="Texture" id=2]
-[ext_resource path="res://assets/animation/debug_walk_02.png" type="Texture" id=3]
-[ext_resource path="res://assets/animation/debug_walk_03.png" type="Texture" id=4]
-[ext_resource path="res://assets/animation/debug_walk_04.png" type="Texture" id=5]
-[ext_resource path="res://assets/animation/debug_walk_05.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/fred_idle_1.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/fred_idle_2.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/fred_idle_3.png" type="Texture" id=4]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 100, 738.273 )
+
+[sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "default",
 "speed": 3.0
 } ]
 
-[node name="Fred" type="Container"]
+[node name="Fred" type="KinematicBody2D"]
 
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = -50.0
-margin/top = -100.0
-margin/right = 50.0
-margin/bottom = 100.0
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 0.329053, 0, 0, 0.135221, 2.33184, 0.579563 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
 script/script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 2.33184, 0.579563 )
+transform/scale = Vector2( 0.329053, 0.135221 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 
-transform/pos = Vector2( 50, 100 )
-frames = SubResource( 1 )
+frames = SubResource( 2 )
 animation = "default"
 frame = 2
 playing = true

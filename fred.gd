@@ -1,4 +1,4 @@
-extends Container
+extends KinematicBody2D
 
 # class member variables go here, for example:
 # var a = 2
@@ -8,14 +8,15 @@ func _ready():
 	self.set_process(true)
 	
 func _process(delta):
-	if(Input.is_mouse_button_pressed(BUTTON_LEFT)):
-		var cur_pos = self.get_pos()
-		cur_pos.x += 100 * delta
-		
-		# wrap around screen
-		if(cur_pos.x > self.get_viewport_rect().size.width + self.get_item_rect().size.width/2):
-			cur_pos.x = -self.get_item_rect().size.width/2
-		self.set_pos(cur_pos)
-		
-func setMode():
-	pass
+	if (Input.is_action_pressed("CLIMB_DOWN")):
+		move(Vector2(0,100*delta))
+	if (Input.is_action_pressed("CLIMB_UP")):
+		move(Vector2(0,-100*delta))
+	if (Input.is_action_pressed("WALK_LEFT")):
+		move(Vector2(100*delta, 0))
+	if (Input.is_action_pressed("WALK_RIGHT")):
+		move(Vector2(100*delta, 0))
+
+
+func walkLeft():
+	
