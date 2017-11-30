@@ -4,18 +4,18 @@
 [ext_resource path="res://assets/sprites/fred_idle_1.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/fred_idle_2.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/fred_idle_3.png" type="Texture" id=4]
-[ext_resource path="res://assets/sprites/ladder_animation.png" type="Texture" id=5]
-[ext_resource path="res://assets/sprites/ladder_animation_2.png" type="Texture" id=6]
-[ext_resource path="res://assets/sprites/new_right_debug_walk_01.png" type="Texture" id=7]
-[ext_resource path="res://assets/sprites/new_right_debug_walk_02.png" type="Texture" id=8]
-[ext_resource path="res://assets/sprites/new_right_debug_walk_03.png" type="Texture" id=9]
-[ext_resource path="res://assets/sprites/new_right_debug_walk_04.png" type="Texture" id=10]
-[ext_resource path="res://assets/sprites/new_right_debug_walk_05.png" type="Texture" id=11]
-[ext_resource path="res://assets/sprites/new_left_debug_walk_01.png" type="Texture" id=12]
-[ext_resource path="res://assets/sprites/new_left_debug_walk_02.png" type="Texture" id=13]
-[ext_resource path="res://assets/sprites/new_left_debug_walk_03.png" type="Texture" id=14]
-[ext_resource path="res://assets/sprites/new_left_debug_walk_04.png" type="Texture" id=15]
-[ext_resource path="res://assets/sprites/new_left_debug_walk_05.png" type="Texture" id=16]
+[ext_resource path="res://assets/sprites/new_right_debug_walk_01.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/new_right_debug_walk_02.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/new_right_debug_walk_03.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/new_right_debug_walk_04.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/new_right_debug_walk_05.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/ladder_animation_2.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/new_left_debug_walk_01.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/new_left_debug_walk_02.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/new_left_debug_walk_03.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/new_left_debug_walk_04.png" type="Texture" id=14]
+[ext_resource path="res://assets/sprites/new_left_debug_walk_05.png" type="Texture" id=15]
+[ext_resource path="res://assets/sprites/ladder_animation.png" type="Texture" id=16]
 [ext_resource path="res://assets/sprites/fred_with_knife.png" type="Texture" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -31,35 +31,35 @@ animations = [ {
 "name": "default",
 "speed": 3.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "climb_up",
-"speed": 3.0
-}, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "walk_right",
 "speed": 6.0
 }, {
-"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "climb_stay",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
 "loop": true,
 "name": "walk_left",
 "speed": 6.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 16 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "climb_down",
 "speed": 3.0
-}, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "climb_stay",
-"speed": 5.0
 }, {
 "frames": [ ExtResource( 17 ) ],
 "loop": true,
 "name": "knife_up",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "climb_up",
+"speed": 3.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=3]
@@ -69,6 +69,7 @@ extents = Vector2( 10, 10 )
 
 [node name="Fred" type="KinematicBody2D"]
 
+transform/pos = Vector2( 0, -0.397217 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 0.31785, 0, 0, 0.506963, 4.66743, -0.574385 )
